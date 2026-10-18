@@ -40,6 +40,18 @@
         <code class="endpoint__value" data-ui="endpoint">http://localhost:3000/games</code>
       </p>
 
+      <div class="endpoint">
+        <label for="sort-games">Сортировка:</label>
+
+        <select class="field__control" id="sort-games" data-action="sort">
+          <option value="">Без сортировки</option>
+          <option value="rating-desc">По рейтингу: сначала высокий</option>
+          <option value="rating-asc">По рейтингу: сначала низкий</option>
+          <option value="year-desc">По году: сначала новые</option>
+          <option value="year-asc">По году: сначала старые</option>
+        </select>
+      </div>
+
       <div class="status" data-ui="status" role="status" aria-live="polite">
         <strong class="status__title">Ожидание подключения</strong>
         <span class="status__text">Реализуйте первый GET-запрос в script.js.</span>

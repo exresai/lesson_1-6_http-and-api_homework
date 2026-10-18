@@ -114,6 +114,10 @@ button:disabled {
   letter-spacing: -0.035em;
 }
 
+.panel--form {
+  align-self: start;
+}
+
 .button {
   min-height: 44px;
   padding: 10px 18px;
@@ -298,6 +302,7 @@ textarea.field__control {
 }
 
 @media (max-width: 560px) {
+
   .page-header,
   .workspace,
   .page-footer {
@@ -321,4 +326,3 @@ textarea.field__control {
     width: 100%;
   }
 }
-

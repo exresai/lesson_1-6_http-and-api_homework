@@ -14,6 +14,7 @@ const statusText = document.querySelector(".status__text");
 const reloadButton = document.querySelector('[data-action="reload"]');
 const entryForm = document.querySelector('[data-form="entry"]');
 const submitButton = document.querySelector('[data-action="submit"]');
+const sortSelect = document.querySelector('[data-action="sort"]');
 
 function showLoadingState() {
     statusBox.classList.remove("status--success", "status--error");
@@ -51,11 +52,31 @@ function showEmptyState() {
     statusText.textContent = "В каталоге пока нет ни одной игры";
 }
 
+function getGamesUrl() {
+    const sortValue = sortSelect.value;
+
+    if (sortValue === "rating-desc") {
+        return `${API_URL}?_sort=-rating`;
+    }
+    if (sortValue === "rating-asc") {
+        return `${API_URL}?_sort=rating`;
+    }
+    if (sortValue === "year-desc") {
+        return `${API_URL}?_sort=-releaseYear`;
+    }
+    if (sortValue === "year-asc") {
+        return `${API_URL}?_sort=releaseYear`;
+    }
+
+    return API_URL;
+}
+
 async function loadGames() {
     showLoadingState();
 
     try {
-        const response = await fetch(API_URL, {
+        const requestUrl = getGamesUrl();
+        const response = await fetch(requestUrl, {
             method: "GET",
         });
 
@@ -143,6 +164,10 @@ function renderGames(games) {
 }
 
 reloadButton.addEventListener("click", () => {
+    loadGames();
+});
+
+sortSelect.addEventListener("change", () => {
     loadGames();
 });
 

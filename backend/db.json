@@ -30,7 +30,7 @@
       "genre": "RPG",
       "platform": "PC/PS/XBox",
       "releaseYear": 2026,
-      "rating": 7
+      "rating": 6
     },
     {
       "title": "Ark Survival Evolved",
@@ -39,6 +39,14 @@
       "releaseYear": 2017,
       "rating": 10,
       "id": "uCPOWHme_EU"
+    },
+    {
+      "title": "Baldur's Gate 3",
+      "genre": "Role play plot",
+      "platform": "PC",
+      "releaseYear": 2023,
+      "rating": 7,
+      "id": "dFU3xqR-DHU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
