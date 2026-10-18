@@ -5,6 +5,7 @@
 
 const API_URL = "http://localhost:3000/games";
 const REQUEST_TIMEOUT = 5000;
+const pendingDeleteIds = new Set();
 
 const statusBox = document.querySelector('[data-ui="status"]');
 const formStatus = document.querySelector('[data-ui="form-status"]');
@@ -64,6 +65,17 @@ function showEmptyState() {
 
     statusTitle.textContent = "Список пуст";
     statusText.textContent = "В каталоге пока нет ни одной игры";
+}
+
+function showDeleteError() {
+    statusBox.classList.remove(
+        "status--loading",
+        "status--success"
+    );
+    statusBox.classList.add("status--error");
+
+    statusTitle.textContent = "Не удалось удалить игру";
+    statusText.textContent = "Изменение отменено: карточка возвращена в список.";
 }
 
 function getGamesUrl() {
@@ -132,6 +144,7 @@ function renderGames(games) {
     games.forEach((game) => {
         const card = document.createElement("article");
         card.classList.add("card");
+        card.dataset.gameId = game.id;
 
         const title = document.createElement("h3");
         title.classList.add("card__title");
@@ -168,15 +181,28 @@ function renderGames(games) {
             if (!confirmed) {
                 return;
             }
+            if (pendingDeleteIds.has(game.id)) {
+                return;
+            }
 
+            pendingDeleteIds.add(game.id);
             deleteButton.disabled = true;
+
+            const nextCard = card.nextSibling;
+            card.remove();
 
             try {
                 await deleteGame(game.id);
                 await loadGames();
             } catch (error) {
                 console.error("Не удалось удалить игру:", error);
-                deleteButton.disabled = false;
+                collection.insertBefore(card, nextCard);
+                showDeleteError();
+            } finally {
+                pendingDeleteIds.delete(game.id);
+                if (card.isConnected) {
+                    deleteButton.disabled = false;
+                }
             }
         });
 
