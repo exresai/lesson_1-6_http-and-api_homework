@@ -4,6 +4,7 @@
 "use strict";
 
 const API_URL = "http://localhost:3000/games";
+const REQUEST_TIMEOUT = 5000;
 
 const statusBox = document.querySelector('[data-ui="status"]');
 const formStatus = document.querySelector('[data-ui="form-status"]');
@@ -37,6 +38,19 @@ function showErrorState() {
 
     statusTitle.textContent = "Ошибка загрузки";
     statusText.textContent = "Не удалось получить список игр. Представьте, что он тут есть";
+}
+
+function showTimeoutState() {
+    collection.replaceChildren();
+
+    statusBox.classList.remove(
+        "status--loading",
+        "status--success"
+    );
+    statusBox.classList.add("status--error");
+
+    statusTitle.textContent = "Превышено время ожидания";
+    statusText.textContent = "API не ответил вовремя. Зачем вы это сломали";
 }
 
 function showEmptyState() {
@@ -74,10 +88,17 @@ function getGamesUrl() {
 async function loadGames() {
     showLoadingState();
 
+    const controller = new AbortController();
+
+    const timeoutId = setTimeout(() => {
+        controller.abort();
+    }, REQUEST_TIMEOUT);
+
     try {
         const requestUrl = getGamesUrl();
         const response = await fetch(requestUrl, {
             method: "GET",
+            signal: controller.signal,
         });
 
         if (!response.ok) {
@@ -88,8 +109,15 @@ async function loadGames() {
 
         renderGames(games);
     } catch (error) {
-        console.error("Не удалось загрузить игры:", error);
-        showErrorState();
+        if (error.name === "AbortError") {
+            console.error("Запрос отменен по тайм-ауту:", error);
+            showTimeoutState();
+        } else {
+            console.error("Не удалось загрузить игры:", error);
+            showErrorState();
+        }
+    } finally {
+        clearTimeout(timeoutId);
     }
 }
 
