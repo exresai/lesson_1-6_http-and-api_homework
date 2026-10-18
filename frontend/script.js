@@ -131,12 +131,18 @@ entryForm.addEventListener("submit", async (event) => {
         rating: Number(formData.get("rating")),
     };
 
+    submitButton.disabled = true;
+    submitButton.textContent = "Отправляем...";
+
     try {
         await createGame(newGame);
         entryForm.reset();
         await loadGames();
     } catch (error) {
         console.error("Не удалось добавить игру:", error);
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Отправить в API";
     }
 });
 
