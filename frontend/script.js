@@ -24,6 +24,19 @@ function showLoadingState() {
     collection.replaceChildren();
 }
 
+function showEmptyState() {
+    collection.replaceChildren();
+
+    statusBox.classList.remove(
+        "status--loading",
+        "status--success",
+        "status--error"
+    );
+
+    statusTitle.textContent = "Список пуст";
+    statusText.textContent = "В каталоге пока нет ни одной игры";
+}
+
 async function loadGames() {
     showLoadingState();
 
@@ -46,6 +59,11 @@ async function loadGames() {
 
 function renderGames(games) {
     collection.replaceChildren();
+
+    if (games.length === 0) {
+        showEmptyState();
+        return;
+    }
 
     games.forEach((game) => {
         const card = document.createElement("article");
