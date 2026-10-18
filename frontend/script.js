@@ -104,7 +104,34 @@ function renderGames(games) {
         rating.textContent = `Оценка: ${game.rating}/10`;
 
         meta.append(genre, platform, releaseYear, rating);
-        card.append(title, meta);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("button", "button--secondary");
+        deleteButton.type = "button";
+        deleteButton.textContent = "Удалить";
+        deleteButton.dataset.gameId = game.id;
+
+        deleteButton.addEventListener("click", async () => {
+            const confirmed = window.confirm(
+                `Разонравилась? "${game.title}"?`
+            );
+
+            if (!confirmed) {
+                return;
+            }
+
+            deleteButton.disabled = true;
+
+            try {
+                await deleteGame(game.id);
+                await loadGames();
+            } catch (error) {
+                console.error("Не удалось удалить игру:", error);
+                deleteButton.disabled = false;
+            }
+        });
+
+        card.append(title, meta, deleteButton);
         collection.append(card);
     });
 
@@ -168,4 +195,14 @@ async function createGame(newGame) {
     const createdGame = await response.json();
 
     return createdGame;
+}
+
+async function deleteGame(gameId) {
+    const response = await fetch(`${API_URL}/${gameId}`, {
+        method: "DELETE",
+    });
+
+    if (!response.ok) {
+        throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
 }
