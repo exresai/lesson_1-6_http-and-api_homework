@@ -1,12 +1,36 @@
 {
-  "items": [
+  "games": [
     {
-      "id": "starter-1",
-      "title": "Замените демонстрационную запись",
-      "category": "starter",
-      "value": 0,
-      "isActive": true
+      "id": "1",
+      "title": "The Binding of Isaac",
+      "genre": "Roguelike",
+      "platform": "PC",
+      "releaseYear": 2014,
+      "rating": 6
+    },
+    {
+      "id": "2",
+      "title": "The Devil in Me",
+      "genre": "Interactive drama",
+      "platform": "PC/PS/Xbox",
+      "releaseYear": 2022,
+      "rating": 7
+    },
+    {
+      "id": "3",
+      "title": "Escape from Tarkov",
+      "genre": "Shooter",
+      "platform": "PC",
+      "releaseYear": 2017,
+      "rating": 8
+    },
+    {
+      "id": "4",
+      "title": "Palworld",
+      "genre": "RPG",
+      "platform": "PC/PS/XBox",
+      "releaseYear": 2026,
+      "rating": 7
     }
   ]
 }
-
