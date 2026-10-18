@@ -133,6 +133,8 @@ entryForm.addEventListener("submit", async (event) => {
 
     try {
         await createGame(newGame);
+        entryForm.reset();
+        await loadGames();
     } catch (error) {
         console.error("Не удалось добавить игру:", error);
     }
@@ -155,5 +157,5 @@ async function createGame(newGame) {
 
     const createdGame = await response.json();
 
-    console.log(createdGame);
+    return createdGame;
 }
