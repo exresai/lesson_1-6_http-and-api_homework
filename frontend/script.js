@@ -24,6 +24,19 @@ function showLoadingState() {
     collection.replaceChildren();
 }
 
+function showErrorState() {
+    collection.replaceChildren();
+
+    statusBox.classList.remove(
+        "status--loading",
+        "status--success"
+    );
+    statusBox.classList.add("status--error");
+
+    statusTitle.textContent = "Ошибка загрузки";
+    statusText.textContent = "Не удалось получить список игр. Представьте, что он тут есть";
+}
+
 function showEmptyState() {
     collection.replaceChildren();
 
@@ -54,6 +67,7 @@ async function loadGames() {
         renderGames(games);
     } catch (error) {
         console.error("Не удалось загрузить игры:", error);
+        showErrorState();
     }
 }
 
@@ -99,5 +113,25 @@ function renderGames(games) {
     statusTitle.textContent = "Готово";
     statusText.textContent = `Загружено игр: ${games.length}`;
 }
+
+reloadButton.addEventListener("click", () => {
+    loadGames();
+});
+
+entryForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(entryForm);
+
+    const newGame = {
+        title: formData.get("title"),
+        genre: formData.get("genre"),
+        platform: formData.get("platform"),
+        releaseYear: Number(formData.get("releaseYear")),
+        rating: Number(formData.get("rating")),
+    };
+
+    console.log(newGame);
+});
 
 loadGames();
