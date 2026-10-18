@@ -6,6 +6,7 @@
 const API_URL = "http://localhost:3000/games";
 
 const statusBox = document.querySelector('[data-ui="status"]');
+const formStatus = document.querySelector('[data-ui="form-status"]');
 const collection = document.querySelector('[data-ui="collection"]');
 const statusTitle = document.querySelector(".status__title");
 const statusText = document.querySelector(".status__text");
@@ -130,6 +131,7 @@ entryForm.addEventListener("submit", async (event) => {
         releaseYear: Number(formData.get("releaseYear")),
         rating: Number(formData.get("rating")),
     };
+    formStatus.textContent = "";
 
     submitButton.disabled = true;
     submitButton.textContent = "Отправляем...";
@@ -137,9 +139,11 @@ entryForm.addEventListener("submit", async (event) => {
     try {
         await createGame(newGame);
         entryForm.reset();
+        formStatus.textContent = "Игра успешно добавлена ура";
         await loadGames();
     } catch (error) {
         console.error("Не удалось добавить игру:", error);
+        formStatus.textContent = "Не удалось добавить игру";
     } finally {
         submitButton.disabled = false;
         submitButton.textContent = "Отправить в API";
