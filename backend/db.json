@@ -31,6 +31,15 @@
       "platform": "PC/PS/XBox",
       "releaseYear": 2026,
       "rating": 7
+    },
+    {
+      "title": "Hollow Knight",
+      "genre": "Platformer",
+      "platform": "PC",
+      "releaseYear": 2017,
+      "rating": 9,
+      "id": "Cq3ZgYKWhvc"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

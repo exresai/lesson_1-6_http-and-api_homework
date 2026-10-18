@@ -118,7 +118,7 @@ reloadButton.addEventListener("click", () => {
     loadGames();
 });
 
-entryForm.addEventListener("submit", (event) => {
+entryForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const formData = new FormData(entryForm);
@@ -131,7 +131,29 @@ entryForm.addEventListener("submit", (event) => {
         rating: Number(formData.get("rating")),
     };
 
-    console.log(newGame);
+    try {
+        await createGame(newGame);
+    } catch (error) {
+        console.error("Не удалось добавить игру:", error);
+    }
 });
 
 loadGames();
+
+async function createGame(newGame) {
+    const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newGame),
+    });
+
+    if (!response.ok) {
+        throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
+
+    const createdGame = await response.json();
+
+    console.log(createdGame);
+}
