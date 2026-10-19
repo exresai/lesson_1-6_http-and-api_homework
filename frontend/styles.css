@@ -227,10 +227,14 @@ button:disabled {
 
 .card__meta {
   display: grid;
-  gap: 7px;
-  margin: 0;
+  gap: 18px;
+  margin: 16px 0;
   color: var(--color-muted);
   line-height: 1.45;
+}
+
+.card__meta p {
+  margin: 0;
 }
 
 .entry-form {

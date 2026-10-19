@@ -47,6 +47,38 @@
       "releaseYear": 2023,
       "rating": 7,
       "id": "dFU3xqR-DHU"
+    },
+    {
+      "title": "Horizon Zero Dawn",
+      "genre": "RPG",
+      "platform": "PS",
+      "releaseYear": 2017,
+      "rating": 10,
+      "id": "SJ6kObVB10E"
+    },
+    {
+      "title": "Metro Exodus",
+      "genre": "Shooter",
+      "platform": "PC",
+      "releaseYear": 2019,
+      "rating": 8,
+      "id": "6mgBYCegM8U"
+    },
+    {
+      "title": "Genshin Impact",
+      "genre": "RPG",
+      "platform": "Mobile",
+      "releaseYear": 2020,
+      "rating": 6,
+      "id": "yuwDRDtEdRw"
+    },
+    {
+      "title": "Apex Legends",
+      "genre": "Royal Fight",
+      "platform": "PC",
+      "releaseYear": 2019,
+      "rating": 6,
+      "id": "hYw0p2RgDTA"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
