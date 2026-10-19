@@ -1,12 +1,85 @@
 {
-  "items": [
+  "games": [
     {
-      "id": "starter-1",
-      "title": "Замените демонстрационную запись",
-      "category": "starter",
-      "value": 0,
-      "isActive": true
+      "id": "1",
+      "title": "The Binding of Isaac",
+      "genre": "Roguelike",
+      "platform": "PC/PS",
+      "releaseYear": 2014,
+      "rating": 6
+    },
+    {
+      "id": "2",
+      "title": "The Devil in Me",
+      "genre": "Interactive drama",
+      "platform": "PC/PS/Xbox",
+      "releaseYear": 2022,
+      "rating": 7
+    },
+    {
+      "id": "3",
+      "title": "Escape from Tarkov",
+      "genre": "Shooter",
+      "platform": "PC",
+      "releaseYear": 2017,
+      "rating": 8
+    },
+    {
+      "id": "4",
+      "title": "Palworld",
+      "genre": "RPG",
+      "platform": "PC/PS/XBox",
+      "releaseYear": 2026,
+      "rating": 6
+    },
+    {
+      "title": "Ark Survival Evolved",
+      "genre": "Survival",
+      "platform": "PC",
+      "releaseYear": 2017,
+      "rating": 10,
+      "id": "uCPOWHme_EU"
+    },
+    {
+      "title": "Baldur's Gate 3",
+      "genre": "Role play plot",
+      "platform": "PC",
+      "releaseYear": 2023,
+      "rating": 7,
+      "id": "dFU3xqR-DHU"
+    },
+    {
+      "title": "Horizon Zero Dawn",
+      "genre": "RPG",
+      "platform": "PS",
+      "releaseYear": 2017,
+      "rating": 10,
+      "id": "SJ6kObVB10E"
+    },
+    {
+      "title": "Metro Exodus",
+      "genre": "Shooter",
+      "platform": "PC",
+      "releaseYear": 2019,
+      "rating": 8,
+      "id": "6mgBYCegM8U"
+    },
+    {
+      "title": "Genshin Impact",
+      "genre": "RPG",
+      "platform": "Mobile",
+      "releaseYear": 2020,
+      "rating": 6,
+      "id": "yuwDRDtEdRw"
+    },
+    {
+      "title": "Apex Legends",
+      "genre": "Royal Fight",
+      "platform": "PC",
+      "releaseYear": 2019,
+      "rating": 6,
+      "id": "hYw0p2RgDTA"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
-

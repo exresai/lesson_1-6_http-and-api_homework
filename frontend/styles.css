@@ -114,6 +114,10 @@ button:disabled {
   letter-spacing: -0.035em;
 }
 
+.panel--form {
+  align-self: start;
+}
+
 .button {
   min-height: 44px;
   padding: 10px 18px;
@@ -223,10 +227,14 @@ button:disabled {
 
 .card__meta {
   display: grid;
-  gap: 7px;
-  margin: 0;
+  gap: 18px;
+  margin: 16px 0;
   color: var(--color-muted);
   line-height: 1.45;
+}
+
+.card__meta p {
+  margin: 0;
 }
 
 .entry-form {
@@ -298,6 +306,7 @@ textarea.field__control {
 }
 
 @media (max-width: 560px) {
+
   .page-header,
   .workspace,
   .page-footer {
@@ -321,4 +330,3 @@ textarea.field__control {
     width: 100%;
   }
 }
-
